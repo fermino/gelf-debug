@@ -5,17 +5,13 @@
 #include <Publisher.h>
 #include <Message.h>
 
-#include "gelf_debug_config.h"
-
-#ifndef GELF_DEBUG_HOST
-#error You must define GELF_DEBUG_HOST in gelf_debug_config.h
-#endif
-
 #ifndef GELF_DEBUG_PORT
 #define GELF_DEBUG_PORT (GRAYLOG_UDP_DEFAULT_PORT)
 #endif
 
 // This is what actually happens around the gelf lib
+#define GELF_DEBUG_INIT(host, port)                         \
+    (GELF_DEBUG_TRANSPORT = UDPTransport(host, port))
 #define GELF_DEBUG_SET(var)                                 \
     (GELF_DEBUG_MESSAGE.set(#var, var))
 #define GELF_DEBUG_SEND(message)                            \
@@ -24,6 +20,7 @@
     (GELF_DEBUG_MESSAGE = Message(""))
 
 // This two variables are accessed globally
+extern UDPTransport GELF_DEBUG_TRANSPORT;
 extern Publisher GELF_DEBUG_PUBLISHER;
 extern Message GELF_DEBUG_MESSAGE;
 

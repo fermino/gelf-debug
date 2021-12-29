@@ -1,6 +1,6 @@
 {
   "name": "gelf-debug",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A debug wrapper for the ESP8266 to log stuff to graylog",
   "keywords": "esp8266, arduino, gelf, graylog, log, debug",
   "repository":
